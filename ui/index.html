@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="L.E.O.N. - Asistente Virtual de IA Avanzado">
+    <title>L.E.O.N. | Lógica Estructurada de Operaciones y Navegación</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Fondo de partículas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Grid hexagonal decorativo -->
+    <div class="hex-grid-overlay"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-left">
+            <div class="status-dot" id="status-dot"></div>
+            <span class="header-label">SISTEMA L.E.O.N.</span>
+        </div>
+        <div class="header-center">
+            <span class="header-version">v2.1.0</span>
+        </div>
+        <div class="header-right">
+            <span class="header-clock" id="clock"></span>
+        </div>
+    </header>
+
+    <!-- Contenedor principal -->
+    <main id="main-container">
+
+        <!-- Panel izquierdo: Stats del sistema -->
+        <aside class="panel panel-left" id="panel-left">
+            <div class="panel-header">
+                <span class="panel-icon">◆</span> DIAGNÓSTICOS
+            </div>
+            <div class="stat-group">
+                <div class="stat-item">
+                    <span class="stat-label">CPU</span>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" id="cpu-bar" style="width: 23%"></div>
+                    </div>
+                    <span class="stat-value" id="cpu-value">23%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">MEM</span>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" id="mem-bar" style="width: 41%"></div>
+                    </div>
+                    <span class="stat-value" id="mem-value">41%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">RED</span>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" id="net-bar" style="width: 67%"></div>
+                    </div>
+                    <span class="stat-value" id="net-value">67%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">GPU</span>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" id="gpu-bar" style="width: 12%"></div>
+                    </div>
+                    <span class="stat-value" id="gpu-value">12%</span>
+                </div>
+            </div>
+
+            <div class="panel-header" style="margin-top: 1.5rem;">
+                <span class="panel-icon">◆</span> MÓDULOS ACTIVOS
+            </div>
+            <div class="module-list">
+                <div class="module-item active">
+                    <span class="module-dot"></span>
+                    <span>Motor STT (Whisper)</span>
+                </div>
+                <div class="module-item active">
+                    <span class="module-dot"></span>
+                    <span>Motor TTS (pyttsx3)</span>
+                </div>
+                <div class="module-item active">
+                    <span class="module-dot"></span>
+                    <span>LLM (Gemini 2.0)</span>
+                </div>
+                <div class="module-item active">
+                    <span class="module-dot"></span>
+                    <span>Wake Word (VAD)</span>
+                </div>
+                <div class="module-item">
+                    <span class="module-dot"></span>
+                    <span>Domótica</span>
+                </div>
+                <div class="module-item">
+                    <span class="module-dot"></span>
+                    <span>Visión</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Centro: Núcleo de LEON -->
+        <section class="core-section" id="core-section">
+            <!-- Anillos orbitales -->
+            <div class="orbit-container">
+                <div class="orbit orbit-1"></div>
+                <div class="orbit orbit-2"></div>
+                <div class="orbit orbit-3"></div>
+
+                <!-- Núcleo central -->
+                <div class="core" id="core">
+                    <div class="core-inner" id="core-inner">
+                        <div class="core-glow"></div>
+                        <div class="core-ring"></div>
+                        <div class="core-ring core-ring-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estado actual -->
+            <div class="status-display" id="status-display">
+                <span class="status-text" id="status-text">EN ESPERA</span>
+                <span class="status-sub" id="status-sub">Di "Leon" para activarme</span>
+            </div>
+
+            <!-- Visualizador de audio -->
+            <div class="audio-visualizer" id="audio-visualizer">
+                <canvas id="waveform-canvas" width="400" height="60"></canvas>
+            </div>
+        </section>
+
+        <!-- Panel derecho: Historial y Skills -->
+        <aside class="panel panel-right" id="panel-right">
+            <div class="panel-header">
+                <span class="panel-icon">◆</span> REGISTRO DE ACTIVIDAD
+            </div>
+            <div class="log-container" id="log-container">
+                <div class="log-entry log-system">
+                    <span class="log-time">03:48:12</span>
+                    <span class="log-msg">Sistema L.E.O.N. inicializado</span>
+                </div>
+                <div class="log-entry log-system">
+                    <span class="log-time">03:48:13</span>
+                    <span class="log-msg">Módulos cargados correctamente</span>
+                </div>
+                <div class="log-entry log-info">
+                    <span class="log-time">03:48:14</span>
+                    <span class="log-msg">Wake Word activa: "leon"</span>
+                </div>
+                <div class="log-entry log-success">
+                    <span class="log-time">03:48:15</span>
+                    <span class="log-msg">En espera de comandos de voz</span>
+                </div>
+            </div>
+
+            <div class="panel-header" style="margin-top: 1.5rem;">
+                <span class="panel-icon">◆</span> HABILIDADES
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card" id="skill-time">
+                    <div class="skill-icon">⏰</div>
+                    <span>Hora</span>
+                </div>
+                <div class="skill-card" id="skill-music">
+                    <div class="skill-icon">🎵</div>
+                    <span>Spotify</span>
+                </div>
+                <div class="skill-card" id="skill-weather">
+                    <div class="skill-icon">🌤️</div>
+                    <span>Clima</span>
+                </div>
+                <div class="skill-card" id="skill-search">
+                    <div class="skill-icon">🔍</div>
+                    <span>Buscar</span>
+                </div>
+                <div class="skill-card" id="skill-notes">
+                    <div class="skill-icon">📝</div>
+                    <span>Notas</span>
+                </div>
+                <div class="skill-card" id="skill-system">
+                    <div class="skill-icon">⚙️</div>
+                    <span>Sistema</span>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-item">
+            <span class="footer-label">LATENCIA</span>
+            <span class="footer-value" id="latency">12ms</span>
+        </div>
+        <div class="footer-item">
+            <span class="footer-label">UPTIME</span>
+            <span class="footer-value" id="uptime">00:00:00</span>
+        </div>
+        <div class="footer-item">
+            <span class="footer-label">TOKENS</span>
+            <span class="footer-value" id="tokens">0</span>
+        </div>
+        <div class="footer-item">
+            <span class="footer-label">SESIÓN</span>
+            <span class="footer-value" id="session-id">LN-0001</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

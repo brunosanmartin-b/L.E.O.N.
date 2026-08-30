@@ -1,0 +1,26 @@
+# Archivos de entorno y credenciales (¡NUNCA SUBIR!)
+.env
+.env*.local
+*.env
+
+# Entornos virtuales
+venv/
+.venv/
+env/
+ENV/
+
+# Byte-compiled / optimizados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de audio temporales de ejecución
+*.wav
+command.wav
+wake_check.wav
+
+# IDEs y editores
+.vscode/
+.idea/
+*.swp
+.DS_Store
