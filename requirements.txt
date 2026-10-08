@@ -1,0 +1,9 @@
+faster-whisper
+sounddevice
+numpy
+av
+edge-tts
+pyttsx3
+python-dotenv
+langchain-google-genai
+langchain-core
